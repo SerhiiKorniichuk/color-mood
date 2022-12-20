@@ -1,15 +1,19 @@
 import { Card } from 'components/Card/Card'
-import { Children } from 'react'
+import { Children, useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import {
+  createInitialColorList,
+  selectColors,
+} from 'store/slices/generation/slice'
 
-function CardGroup() {
-  const data: string[] = []
-  return (
-    <>
-      {Children.map(data, () => (
-        <Card />
-      ))}
-    </>
-  )
+export function CardGroup() {
+  const dispatch = useAppDispatch()
+
+  const colors = useAppSelector(selectColors)
+
+  useEffect(() => {
+    dispatch(createInitialColorList(5))
+  }, [dispatch])
+
+  return <>{Children.toArray(colors.map((color) => <Card data={color} />))}</>
 }
-
-export { CardGroup }

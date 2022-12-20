@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk, RootState } from 'store'
-
-interface Color {
-  hex: string
-  locked: boolean
-}
+import { Color, generateColor, generateHex } from 'utilities/color'
 
 interface GenerationState {
   colors: Color[]
@@ -18,7 +14,7 @@ const generationSlice = createSlice({
   name: 'generation',
   initialState,
   reducers: {
-    updateColorList: (state, action: PayloadAction<Color[]>) => {
+    _updateColors: (state, action: PayloadAction<Color[]>) => {
       state.colors = action.payload
     },
   },
@@ -26,20 +22,35 @@ const generationSlice = createSlice({
 
 // Actions
 
-const { updateColorList } = generationSlice.actions
+const { _updateColors } = generationSlice.actions
 
 // Selectors
 
-export const colorList = (state: RootState) => state.generation.colors
+export const selectColors = (state: RootState) => state.generation.colors
 
 // Thunks
 
-export const generateColors = (): AppThunk => (dispatch, getState) => {
-  dispatch(updateColorList([]))
-}
+export const createInitialColorList =
+  (amount = 0): AppThunk =>
+  (dispatch, getState) => {
+    const colors = selectColors(getState())
 
-export const updateColor = (): AppThunk => (dispatch) => {
-  dispatch(updateColorList([]))
+    if (colors.length) return
+
+    const newColors: Color[] = Array.from(Array(amount), () => generateColor())
+
+    dispatch(_updateColors(newColors))
+  }
+
+export const updateColorsList = (): AppThunk => (dispatch, getState) => {
+  const colors = selectColors(getState())
+
+  const newColors = colors.map((color) => {
+    if (color.locked) return color
+    return { ...color, hex: generateHex() }
+  })
+
+  dispatch(_updateColors(newColors))
 }
 
 // Reducer

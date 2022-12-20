@@ -1,7 +1,15 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { Color } from 'utilities/color'
 
-const Wrapper = styled.div`
-  flex: 1;
-`
+interface WrapperProps {
+  data: Color
+}
 
-export { Wrapper }
+export const Wrapper = styled('div')<WrapperProps>(
+  () => css`
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `
+)

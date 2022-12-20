@@ -1,19 +1,30 @@
+import * as CS from 'common/styles'
+import { SHADOWS } from 'common/theme'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
+  position: relative;
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr auto;
 `
 
-const Body = styled.div`
+export const TopBar = styled(CS.Pannel)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: ${SHADOWS.PANNEL_UPPERLINE};
+`
+
+export const Body = styled.div`
   display: flex;
 `
 
-const Footer = styled.div`
-  padding: 10px;
-  display: flex;
-  justify-content: center;
+export const BottomBar = styled(CS.Pannel)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-shadow: ${SHADOWS.PANNEL_UNDERLINE};
 `
-
-export { Wrapper, Body, Footer }

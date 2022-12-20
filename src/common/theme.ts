@@ -1,8 +1,11 @@
-import { extendTheme } from '@chakra-ui/react'
+import { hexAlpha } from 'utilities/color'
 
-const palette = {
-  white: '#FFFFFF',
-  black: '#000000',
+export const PALLETE = {
+  WHITE: '#FFFFFF',
+  BLACK: '#000000',
 }
 
-export const theme = extendTheme({ palette })
+export const SHADOWS = {
+  PANNEL_UPPERLINE: `${hexAlpha(PALLETE.BLACK, 0.08)} 0 1px`,
+  PANNEL_UNDERLINE: `${hexAlpha(PALLETE.BLACK, 0.08)} 0 -1px`,
+}
