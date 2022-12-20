@@ -15,5 +15,5 @@ export function CardGroup() {
     dispatch(createInitialColorList(5))
   }, [dispatch])
 
-  return <>{Children.toArray(colors.map((color) => <Card data={color} />))}</>
+  return <>{Children.toArray(colors.map((color) => <Card color={color} />))}</>
 }
