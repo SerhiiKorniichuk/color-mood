@@ -1,6 +1,8 @@
 import chroma from 'chroma-js'
+import { uid } from './uid'
 
 export interface Color {
+  id: string
   hex: string
   locked: boolean
 }
@@ -11,6 +13,7 @@ export const generateHex = () => {
 
 export const generateColor = (): Color => {
   return {
+    id: uid(),
     hex: generateHex(),
     locked: false,
   }

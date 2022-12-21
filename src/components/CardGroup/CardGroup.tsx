@@ -1,19 +1,19 @@
 import { Card } from 'components/Card/Card'
-import { Children, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from 'store/hooks'
-import {
-  createInitialColorList,
-  selectColors,
-} from 'store/slices/generation/slice'
+import { Children } from 'react'
+import { Color } from 'utilities/color'
 
-export function CardGroup() {
-  const dispatch = useAppDispatch()
+interface CardGroupProps {
+  colors: Color[]
+}
 
-  const colors = useAppSelector(selectColors)
-
-  useEffect(() => {
-    dispatch(createInitialColorList(5))
-  }, [dispatch])
-
-  return <>{Children.toArray(colors.map((color) => <Card color={color} />))}</>
+export function CardGroup({ colors }: CardGroupProps) {
+  return (
+    <>
+      {Children.toArray(
+        colors.map((color) => (
+          <Card color={color} disableDelete={colors.length < 2} />
+        ))
+      )}
+    </>
+  )
 }

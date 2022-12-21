@@ -1,3 +1,4 @@
+import { StyledIconButton } from 'components/ActionButton/ActionButton.styles'
 import styled from 'styled-components'
 
 export const ActionBar = styled('div')`
@@ -25,8 +26,13 @@ export const Wrapper = styled('div')`
     left: 50%;
     bottom: 23%;
     transform: translateX(-50%);
-    opacity: 0;
-    visibility: hidden;
+  }
+
+  ${StyledIconButton} {
+    &:not(.active) {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   ${PreviewBox} {
@@ -37,9 +43,11 @@ export const Wrapper = styled('div')`
   }
 
   &:hover {
-    ${ActionBar} {
-      opacity: 1;
-      visibility: visible;
+    ${StyledIconButton} {
+      &:not(.hidden) {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 `

@@ -53,6 +53,29 @@ export const updateColorsList = (): AppThunk => (dispatch, getState) => {
   dispatch(_updateColors(newColors))
 }
 
+export const updateColor =
+  (updatedColor: Color): AppThunk =>
+  (dispatch, getState) => {
+    const colors = selectColors(getState())
+
+    const newColors = colors.map((color) => {
+      if (color.id === updatedColor.id) return updatedColor
+      return color
+    })
+
+    dispatch(_updateColors(newColors))
+  }
+
+export const deleteColor =
+  (id: Color['id']): AppThunk =>
+  (dispatch, getState) => {
+    const colors = selectColors(getState())
+
+    const newColors = colors.filter((color) => color.id !== id)
+
+    dispatch(_updateColors(newColors))
+  }
+
 // Reducer
 
 export default generationSlice.reducer

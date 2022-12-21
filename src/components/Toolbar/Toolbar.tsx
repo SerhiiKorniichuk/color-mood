@@ -1,16 +1,28 @@
 import { Button } from '@chakra-ui/react'
 import { useAppDispatch } from 'store/hooks'
 import { updateColorsList } from 'store/slices/generation/slice'
+import { Color } from 'utilities/color'
 
-export function Toolbar() {
+interface ToolbarProps {
+  colors: Color[]
+}
+
+export function Toolbar({ colors }: ToolbarProps) {
   const dispatch = useAppDispatch()
 
   const handleClick = () => {
     dispatch(updateColorsList())
   }
 
+  const disableGeneration = !colors.some((color) => !color.locked)
+
   return (
-    <Button type="button" variant="solid" onClick={handleClick}>
+    <Button
+      type="button"
+      variant="solid"
+      onClick={handleClick}
+      disabled={disableGeneration}
+    >
       Generate
     </Button>
   )
