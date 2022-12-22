@@ -36,6 +36,18 @@ export const ButtonCommonStyles = css`
   }
 `
 
+export const CardButtonHoverStyles = (luminance: number) => css`
+  background-color: ${luminance > 0.5
+    ? hexAlpha(theme.pallete.black, 0.1)
+    : hexAlpha(theme.pallete.white, 0.1)};
+`
+
+export const CardButtonActiveStyles = (luminance: number) => css`
+  background-color: ${luminance > 0.5
+    ? hexAlpha(theme.pallete.black, 0.15)
+    : hexAlpha(theme.pallete.white, 0.15)};
+`
+
 export const CardButtonCommonStyles = (luminance: number) => css`
   ${ButtonCommonStyles}
 
@@ -43,14 +55,10 @@ export const CardButtonCommonStyles = (luminance: number) => css`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${luminance > 0.5
-      ? hexAlpha(theme.pallete.black, 0.1)
-      : hexAlpha(theme.pallete.white, 0.1)};
+    ${CardButtonHoverStyles(luminance)}
   }
 
   &:active {
-    background-color: ${luminance > 0.5
-      ? hexAlpha(theme.pallete.black, 0.15)
-      : hexAlpha(theme.pallete.white, 0.15)};
+    ${CardButtonActiveStyles(luminance)}
   }
 `

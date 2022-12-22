@@ -3,6 +3,7 @@ import { hexAlpha } from 'utilities/color'
 const pallete = {
   white: '#FFFFFF',
   black: '#000000',
+  gray: '#CCCCCC',
 }
 
 const shadows = {

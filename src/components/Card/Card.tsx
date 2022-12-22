@@ -5,8 +5,10 @@ import { ReactComponent as UnlockIcon } from 'assets/icons/unlock.svg'
 import chroma from 'chroma-js'
 import classNames from 'classnames'
 import { ActionButton } from 'components/ActionButton/ActionButton'
+import { ColorPicker } from 'components/ColorPicker/ColorPicker'
 import { PreviewButton } from 'components/PreviewButton/PreviewButton'
 import { Tooltip } from 'components/Tooltip/Tooltip'
+import { FC, memo } from 'react'
 import { useAppDispatch } from 'store/hooks'
 import { deleteColor, updateColor } from 'store/slices/generation/slice'
 import { Color } from 'utilities/color'
@@ -18,7 +20,7 @@ interface CardProps {
   disableDelete?: boolean
 }
 
-export function Card({ color, disableDelete }: CardProps) {
+export const Card: FC<CardProps> = memo(({ color, disableDelete = false }) => {
   const { id, hex, locked } = color
 
   const dispatch = useAppDispatch()
@@ -33,6 +35,10 @@ export function Card({ color, disableDelete }: CardProps) {
 
   const handleLock = () => {
     dispatch(updateColor({ ...color, locked: !locked }))
+  }
+
+  const handleChange = (newColor: string) => {
+    dispatch(updateColor({ ...color, hex: newColor }))
   }
 
   const luminance = chroma(hex).luminance()
@@ -79,12 +85,19 @@ export function Card({ color, disableDelete }: CardProps) {
         </Tooltip>
       </S.ActionBar>
       <S.PreviewBox>
-        <PreviewButton luminance={luminance}>{hex}</PreviewButton>
+        <Tooltip
+          trigger={(open) => (
+            <PreviewButton luminance={luminance} active={open}>
+              {hex}
+            </PreviewButton>
+          )}
+          on={['click']}
+          closeOnDocumentClick
+          closeOnEscape
+        >
+          <ColorPicker color={hex} onChange={handleChange} />
+        </Tooltip>
       </S.PreviewBox>
     </S.Wrapper>
   )
-}
-
-Card.defaultProps = {
-  disableDelete: false,
-}
+})

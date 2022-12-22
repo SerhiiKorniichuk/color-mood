@@ -10,6 +10,8 @@ export const Wrapper = styled.div`
 `
 
 export const TopBar = styled(CS.Pannel)`
+  z-index: 1000;
+  position: relative;
   width: 100%;
   box-shadow: ${theme.shadows.upperline};
 `
@@ -19,6 +21,8 @@ export const Body = styled.div`
 `
 
 export const BottomBar = styled(CS.Pannel)`
+  z-index: 1000;
+  position: relative;
   width: 100%;
   box-shadow: ${theme.shadows.underline};
 `
