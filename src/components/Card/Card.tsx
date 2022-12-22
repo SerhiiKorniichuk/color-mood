@@ -6,6 +6,7 @@ import chroma from 'chroma-js'
 import classNames from 'classnames'
 import { ActionButton } from 'components/ActionButton/ActionButton'
 import { PreviewButton } from 'components/PreviewButton/PreviewButton'
+import { Tooltip } from 'components/Tooltip/Tooltip'
 import { useAppDispatch } from 'store/hooks'
 import { deleteColor, updateColor } from 'store/slices/generation/slice'
 import { Color } from 'utilities/color'
@@ -39,26 +40,43 @@ export function Card({ color, disableDelete }: CardProps) {
   return (
     <S.Wrapper style={{ backgroundColor: hex }}>
       <S.ActionBar>
-        <ActionButton
-          luminance={luminance}
-          aria-label="Delete"
-          icon={<DeleteIcon />}
-          className={classNames({ hidden: disableDelete })}
-          onClick={handleDelete}
-        />
-        <ActionButton
-          luminance={luminance}
-          aria-label="Copy"
-          icon={<CopyIcon />}
-          onClick={handleCopy}
-        />
-        <ActionButton
-          luminance={luminance}
-          aria-label="Lock"
-          icon={locked ? <LockIcon /> : <UnlockIcon />}
-          className={classNames({ active: locked })}
-          onClick={handleLock}
-        />
+        <Tooltip
+          trigger={
+            <ActionButton
+              luminance={luminance}
+              icon={<DeleteIcon />}
+              className={classNames({ hidden: disableDelete })}
+              onClick={handleDelete}
+            />
+          }
+        >
+          Delete
+        </Tooltip>
+
+        <Tooltip
+          trigger={
+            <ActionButton
+              luminance={luminance}
+              icon={<CopyIcon />}
+              onClick={handleCopy}
+            />
+          }
+        >
+          Copy HEX
+        </Tooltip>
+
+        <Tooltip
+          trigger={
+            <ActionButton
+              luminance={luminance}
+              icon={locked ? <LockIcon /> : <UnlockIcon />}
+              className={classNames({ active: locked })}
+              onClick={handleLock}
+            />
+          }
+        >
+          Handle lock
+        </Tooltip>
       </S.ActionBar>
       <S.PreviewBox>
         <PreviewButton luminance={luminance}>{hex}</PreviewButton>

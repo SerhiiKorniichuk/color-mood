@@ -1,5 +1,5 @@
 import * as CS from 'common/styles'
-import { SHADOWS } from 'common/theme'
+import { theme } from 'common/theme'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
 export const TopBar = styled(CS.Pannel)`
   width: 100%;
-  box-shadow: ${SHADOWS.PANNEL_UPPERLINE};
+  box-shadow: ${theme.shadows.upperline};
 `
 
 export const Body = styled.div`
@@ -20,5 +20,5 @@ export const Body = styled.div`
 
 export const BottomBar = styled(CS.Pannel)`
   width: 100%;
-  box-shadow: ${SHADOWS.PANNEL_UNDERLINE};
+  box-shadow: ${theme.shadows.underline};
 `

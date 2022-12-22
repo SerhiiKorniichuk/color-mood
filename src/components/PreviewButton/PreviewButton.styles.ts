@@ -1,22 +1,19 @@
-import { Button } from '@chakra-ui/react'
 import { CardButtonCommonStyles } from 'common/styles'
-import { PALLETE } from 'common/theme'
+import { theme } from 'common/theme'
 import styled, { css } from 'styled-components'
 
-interface StyledButtonProps {
+interface PreviewButtonProps {
   luminance?: number
 }
 
-export const StyledButton = styled(Button)<StyledButtonProps>(
+export const PreviewButton = styled.button<PreviewButtonProps>(
   ({ luminance = 0 }) => css`
     ${CardButtonCommonStyles(luminance)}
 
-    &.chakra-button {
-      padding: 10px;
-      height: 50px;
-      font-size: 28px;
-      color: ${luminance > 0.5 ? PALLETE.BLACK : PALLETE.WHITE};
-      transition: background-color 0.2s;
-    }
+    padding: 10px;
+    height: 50px;
+    font-size: 28px;
+    color: ${luminance > 0.5 ? theme.pallete.black : theme.pallete.white};
+    transition: background-color 0.2s;
   `
 )

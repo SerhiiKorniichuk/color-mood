@@ -1,20 +1,20 @@
-import { StyledIconButton } from 'components/ActionButton/ActionButton.styles'
+import { ActionButton } from 'components/ActionButton/ActionButton.styles'
 import styled from 'styled-components'
 
-export const ActionBar = styled('div')`
+export const ActionBar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
 `
 
-export const PreviewBox = styled('div')`
+export const PreviewBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
-export const Wrapper = styled('div')`
+export const Wrapper = styled.div`
   position: relative;
   flex: 1;
   display: flex;
@@ -28,7 +28,7 @@ export const Wrapper = styled('div')`
     transform: translateX(-50%);
   }
 
-  ${StyledIconButton} {
+  ${ActionButton} {
     &:not(.active) {
       opacity: 0;
       visibility: hidden;
@@ -43,7 +43,7 @@ export const Wrapper = styled('div')`
   }
 
   &:hover {
-    ${StyledIconButton} {
+    ${ActionButton} {
       &:not(.hidden) {
         opacity: 1;
         visibility: visible;

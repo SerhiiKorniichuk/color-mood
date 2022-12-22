@@ -1,14 +1,23 @@
-import { IconButtonProps } from '@chakra-ui/react'
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import * as S from './ActionButton.styles'
 
-interface ActionButton extends IconButtonProps {
+interface ActionButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
+  icon?: ReactNode
   luminance?: number
 }
 
-export function ActionButton({ luminance, ...props }: ActionButton) {
-  return <S.StyledIconButton luminance={luminance} {...props} />
-}
+export const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
+  ({ icon, luminance, ...props }, ref) => {
+    return (
+      <S.ActionButton {...props} ref={ref} luminance={luminance}>
+        {icon}
+      </S.ActionButton>
+    )
+  }
+)
 
 ActionButton.defaultProps = {
-  luminance: 1,
+  icon: undefined,
+  luminance: 0,
 }

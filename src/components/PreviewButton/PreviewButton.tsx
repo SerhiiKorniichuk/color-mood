@@ -1,13 +1,15 @@
-import { ButtonProps } from '@chakra-ui/react'
+import { ButtonHTMLAttributes, forwardRef } from 'react'
 import * as S from './PreviewButton.styles'
 
-interface PreviewButtonProps extends ButtonProps {
+interface PreviewButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   luminance?: number
 }
 
-export function PreviewButton(props: PreviewButtonProps) {
-  return <S.StyledButton {...props} />
-}
+export const PreviewButton = forwardRef<HTMLButtonElement, PreviewButtonProps>(
+  (props, ref) => {
+    return <S.PreviewButton {...props} ref={ref} />
+  }
+)
 
 PreviewButton.defaultProps = {
   luminance: 0,

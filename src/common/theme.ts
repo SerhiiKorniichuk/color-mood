@@ -1,11 +1,16 @@
 import { hexAlpha } from 'utilities/color'
 
-export const PALLETE = {
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
+const pallete = {
+  white: '#FFFFFF',
+  black: '#000000',
 }
 
-export const SHADOWS = {
-  PANNEL_UPPERLINE: `${hexAlpha(PALLETE.BLACK, 0.08)} 0 1px`,
-  PANNEL_UNDERLINE: `${hexAlpha(PALLETE.BLACK, 0.08)} 0 -1px`,
+const shadows = {
+  upperline: `${hexAlpha(pallete.black, 0.08)} 0 1px`,
+  underline: `${hexAlpha(pallete.black, 0.08)} 0 -1px`,
+}
+
+export const theme = {
+  pallete,
+  shadows,
 }
